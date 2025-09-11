@@ -2,6 +2,7 @@
 import { useDeleteCategory } from "@/app/(dashboard)/admin/foods-management/categories/_services/use-category-mutations";
 import { useCategories } from "@/app/(dashboard)/admin/foods-management/categories/_services/use-category-queries";
 import { Button } from "@/components/ui/button";
+import { alert } from "@/lib/use-global-store";
 import { Edit, Trash } from "lucide-react";
 
 const CategoryCards = () => {
@@ -30,7 +31,9 @@ const CategoryCards = () => {
               variant={"ghost"}
               size={"icon"}
               onClick={() => {
-                deleteCategoryMutation.mutate(item.id);
+                alert({
+                  onConfirm: () => deleteCategoryMutation.mutate(item.id),
+                });
               }}
             >
               <Trash />
